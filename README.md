@@ -24,6 +24,66 @@ The small example containing 3000 QAs (short answer + freeform) are in ![inferen
 - Multiple-choice scoring: category-specific rules implemented in `inference/calc_acc_res.py` (e.g., Jaccard≥0.7 for `landcover_type`, order-independent exact set for `land_use`, 30% relative or <10 absolute tolerance for `height_average`, ±0.05 for `hard_pixel`).
 - Free-form evaluation: GPT-based automatic scoring with temperature=0.0; NaN assigned when the corresponding GT domain is absent. Evaluation traces are saved.
 
+
+### Notes on default data paths
+- Some example and auxiliary scripts use default paths like `/workspace/GeoNRW` or `../SynRS3D/GeoNRW_dsm` for convenience. These are merely samples. Please adjust them according to your environment using CLI arguments (e.g., `--image_dir`, `--dsm_dir`, `--svf_dir`, `--seg_dir`, etc.) as needed.
+
+## Benchmark (examples)
+- Example 1: Full-modality inference (RGB+DSM+SVF+SEG)
+```bash
+python inference/svf_qa_multi.py \
+  --questions_file path/to/questions.jsonl \
+  --image_dir /path/to/images \
+  --modalities rgb,dsm,svf,seg \
+  --output_file results.jsonl \
+  --temperature 0
+```
+- Example 2: RGB-only inference
+```bash
+python inference/svf_qa_multi.py \
+  --questions_file path/to/questions.jsonl \
+  --image_dir /path/to/images \
+  --modalities rgb \
+  --output_file results_rgb_only.jsonl \
+  --temperature 0
+```
+
+## Project Structure
+(some will be added later)
+```
+Geo3DVQA_v0/
+├── core_release/          # Minimal wrappers and paper-aligned quickstart
+│   └── scripts/           # generate_qas.sh / inference.sh / evaluate_*.sh
+├── generate_qas/          # Question generation scripts
+│   ├── run.py
+│   ├── freeform_qa_generation/
+│   └── visualize_qa_*.py
+├── inference/             # Inference and evaluation
+│   ├── svf_qa_multi.py
+│   ├── calc_acc_res.py
+│   └── gpt4_evaluation*.py
+└── run_llama_factory/
+    └── inference/
+```
+
+## Documentation
+
+### Data Format
+Input (JSONL):
+```json
+{ "question_id": "unique_id", "text": "Question text", "image": "relative/path/to/image", "category": "category_name" }
+```
+Output (JSONL):
+```json
+{ "question_id": "unique_id", "text": "Question text", "answer": "Model answer", "image": "relative/path/to/image", "category": "category_name", "used_modalities": ["rgb", "dsm", "svf", "seg"] }
+```
+
+### Modalities
+- RGB: Standard aerial/satellite RGB images
+- DSM: Digital Surface Model (elevation data)
+- SVF: Sky View Factor (openness measure)
+- SEG: Land use segmentation maps
+
 ## Disclaimer
 **Important**: This repository contains a refactored reference implementation of the method described in our paper. For readability and maintainability, the code has been reorganized and some parts might be modified or added for additional experiments after the paper was written.
 However, the implementation reflects the same core methodology and is intended as a basis for reproducing and extending our work.
