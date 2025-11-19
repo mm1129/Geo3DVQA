@@ -1,0 +1,44 @@
+{
+    "3D_geo_100k": {
+    "file_name": "svf_15x_large_answers_train_mixed_hr0.3_0803_hr0.3_ft_factory.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages",
+      "images": "images"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "3D_geo_100k_mm": {
+    "file_name": "svf_15x_large_answers_train_mixed_hr0.3_0803_hr0.3_ft_factory_mm.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages",
+      "images": "images"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+ "free_geo_1000q_ft_0901": {
+    "file_name": "free_qas_20250901_train_1000q_gpt_4_1_mini_factory.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages",
+      "images": "images"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  }
+}
