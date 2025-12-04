@@ -3,6 +3,14 @@
 from Aerial Imagery
 </h2>
 
+<h5 align="center"><a href="https://github.com/mm1129">Mai Tsujimoto</a>,
+<a href="https://junjue-wang.github.io/homepage/">Junjue Wang</a>,
+<a href="https://weihaoxuan.com">Weihao Xuan</a>,
+<a href="https://naotoyokoya.com/">Naoto Yokoya†</a></h5>
+
+<h5 align="center">
+† Corresponding Author</h5>
+
 Three-dimensional geospatial analysis is critical to applications in urban planning, climate adaptation, and environmental assessment. Current methodologies depend on costly, specialized sensors (e.g., LiDAR and multispectral), which restrict global accessibility. Existing sensor-based and rule-driven methods further struggle with tasks requiring the integration of multiple 3D cues, handling diverse queries, and providing interpretable reasoning. We hereby present Geo3DVQA, a comprehensive benchmark for evaluating vision-language models (VLMs) in height-aware, 3D geospatial reasoning using RGB-only remote sensing imagery.  Unlike conventional sensor-based frameworks, Geo3DVQA emphasizes realistic scenarios that integrate elevation, sky view factors, and land cover patterns. The benchmark encompasses 110k curated question–answer pairs spanning 16 task categories across three complexity levels: single-feature inference, multi-feature reasoning, and application-level spatial analysis. The evaluation of ten state-of-the-art VLMs highlights the difficulty of RGB-to-3D reasoning. GPT-4o and Gemini-2.5-Flash achieved only 28.6\% and 33.0\% accuracy respectively, while domain-specific fine-tuning of Qwen2.5-VL-7B achieved 49.6\% (+24.8 points). These results reveal both the limitations of current VLMs and the effectiveness of domain adaptation. Geo3DVQA introduces a new frontier of challenges for scalable, accessible, and holistic 3D geospatial analysis. The dataset and code will be released upon publication at \url{https://github.com/mm1129/Geo3DVQA}.
 
 ![dataset](dataset.png)
