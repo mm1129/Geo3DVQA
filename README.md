@@ -8,6 +8,8 @@ Three-dimensional geospatial analysis is critical to applications in urban plann
 ![dataset](dataset.png)
 
 ## News
+- 2025/11/11, our paper [Geo3DVQA: Evaluating Vision-Language Models for 3D Geospatial Reasoning
+from Aerial Imagery] accepted to WACV 2026
 - 2025/11/28, Preparing the dataset/code release and camera-ready materials
 
 ## ToDo
