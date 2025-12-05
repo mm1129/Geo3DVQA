@@ -16,16 +16,17 @@ Three-dimensional geospatial analysis is critical to applications in urban plann
 ![dataset](dataset.png)
 
 ## News
-- 2025/11/11, our paper [Geo3DVQA: Evaluating Vision-Language Models for 3D Geospatial Reasoning
-from Aerial Imagery] accepted to WACV 2026
 - 2025/11/28, Preparing the dataset/code release and camera-ready materials
+- 2025/11/11, our paper was accepted to WACV 2026!
 
 ## ToDo
-- [ ] update code & data
+- [ ] update code & data (merge `develop' branch)
 
 ## Data preparation
 
-I'll provide the dataset link soon.
+I'll provide the dataset in [hugging face](https://huggingface.co/datasets/mt129/Geo3DVQA). This includes training & evaluation QAs, and SVF (sky view factor) images computed via UMEP toolkit from digital surface models (DSMs) on GeoNRW.
+Please refer to ![SynRS3D](https://github.com/JTRNEO/SynRS3D) for DSM, segmentation, and rgb dataset.
+
 The small example containing 3000 QAs (short answer + freeform) are in ![inference folder](inference/svf_combined_3000q_free_example.jsonl).
 
 ## Evaluation Protocol
