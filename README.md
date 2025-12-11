@@ -59,9 +59,9 @@ python inference/svf_qa_multi.py \
 ```
 
 ## Project Structure
-(some will be added later)
+(some "as-is" code are in `develop' branch)
 ```
-Geo3DVQA_v0/
+Geo3DVQA/
 ├── core_release/          # Minimal wrappers and paper-aligned quickstart
 │   └── scripts/           # generate_qas.sh / inference.sh / evaluate_*.sh
 ├── generate_qas/          # Question generation scripts
