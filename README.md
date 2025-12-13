@@ -25,9 +25,9 @@ Three-dimensional geospatial analysis is critical to applications in urban plann
 ## Data preparation
 
 I'll provide the dataset in [hugging face](https://huggingface.co/datasets/mt129/Geo3DVQA). This includes training & evaluation QAs, and SVF (sky view factor) images computed via UMEP toolkit from digital surface models (DSMs) on GeoNRW.
-Please refer to ![IEEE GeoNRW](https://ieee-dataport.org/open-access/geonrw) for DSM, segmentation, and rgb dataset.
+Please refer to [IEEE GeoNRW](https://ieee-dataport.org/open-access/geonrw) for DSM, segmentation, and rgb dataset.
 
-The small example containing 3000 QAs (short answer + freeform) are in ![inference folder](inference/svf_combined_3000q_free_example.jsonl).
+The small example containing 3000 QAs (short answer + freeform) are in [inference folder](inference/svf_combined_3000q_free_example.jsonl).
 
 ## Evaluation Protocol
 - Decoding: temperature=0 (greedy) unless otherwise noted. When `temperature>0`, report mean±std over 3 runs (appendix).
