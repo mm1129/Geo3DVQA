@@ -59,7 +59,7 @@ class FreeformAnalysisCategories:
         self.LANDCOVER_CLASSES = {
             0: 'others', 1: 'forest', 2: 'water', 3: 'agricultural', 
             4: 'residential', 5: 'grassland', 6: 'railways', 
-            7: 'roads', 8: 'commercial', 9: 'bare_soil', 10: 'buildings'
+            7: 'highways', 8: 'airports', 9: 'roads', 10: 'buildings'
         }
         
         # Initialize GPT-4 answer generator if enabled
@@ -456,7 +456,7 @@ Please structure your response using only <OBSERVATION> and <CONCLUSION>:
             metrics['development_ratio'] = float(developed_pixels / total_pixels)
             
             # Natural-artificial balance for sustainability assessment
-            natural_classes = [1, 2, 3, 5, 9]  # forest, water, agricultural, grassland, bare_soil
+            natural_classes = [1, 2, 3, 5]  # forest, water, agricultural, grassland
             natural_pixels = sum(counts[np.isin(unique_classes, natural_classes)])
             metrics['sustainability_balance'] = {
                 'natural_ratio': float(natural_pixels / total_pixels),
@@ -585,8 +585,8 @@ Please structure your response using only <OBSERVATION> and <CONCLUSION>:
         # Land suitability for installations
         if self.segmentation_map is not None and self.svf_map is not None:
             # Suitable land classes for energy installations
-            suitable_classes = [3, 5, 9]  # agricultural, grassland, bare_soil
-            unsuitable_classes = [1, 2, 4, 6, 7, 8, 10]  # forest, water, residential, infrastructure, buildings
+            suitable_classes = [3, 5]  # agricultural, grassland
+            unsuitable_classes = [1, 2, 4, 6, 7, 8, 9, 10]  # forest, water, residential, infrastructure, buildings
             
             total_pixels = self.segmentation_map.size
             suitable_pixels = np.sum(np.isin(self.segmentation_map, suitable_classes))
@@ -713,8 +713,8 @@ Please structure your response using only <OBSERVATION> and <CONCLUSION>:
             }
             
             # Natural vs artificial balance with ecological connectivity
-            natural_classes = [1, 2, 3, 5, 9]  # forest, water, agricultural, grassland, bare_soil
-            artificial_classes = [4, 6, 7, 8, 10]  # residential, railways, roads, commercial, buildings
+            natural_classes = [1, 2, 3, 5]  # forest, water, agricultural, grassland
+            artificial_classes = [4, 6, 7, 8, 9,10]  # residential, railways, roads, commercial, buildings
             
             natural_pixels = sum(counts[np.isin(unique_classes, natural_classes)])
             artificial_pixels = sum(counts[np.isin(unique_classes, artificial_classes)])
@@ -785,7 +785,7 @@ Please structure your response using only <OBSERVATION> and <CONCLUSION>:
         # SVF-Segmentation consistency
         if self.svf_map is not None and self.segmentation_map is not None:
             building_mask = np.isin(self.segmentation_map, [4, 10])  # residential, buildings
-            open_mask = np.isin(self.segmentation_map, [2, 3, 5, 9])  # water, agricultural, grassland, bare_soil
+            open_mask = np.isin(self.segmentation_map, [2, 3, 5])  # water, agricultural, grassland
             
             if np.sum(building_mask) > 0 and np.sum(open_mask) > 0:
                 svf_buildings = self.svf_map[building_mask & ~np.isnan(self.svf_map)]
@@ -1085,8 +1085,8 @@ Please structure your response using only <OBSERVATION> and <CONCLUSION>:
         
         if self.svf_map is not None and self.segmentation_map is not None:
             # Environmental sustainability indicators
-            natural_classes = [1, 2, 3, 5, 9]  # forest, water, agricultural, grassland, bare_soil
-            artificial_classes = [4, 6, 7, 8, 10]  # residential, railways, roads, commercial, buildings
+            natural_classes = [1, 2, 3, 5]  # forest, water, agricultural, grassland
+            artificial_classes = [4, 6, 7, 8, 9, 10]  # residential, railways, roads, commercial, buildings
             
             total_pixels = self.segmentation_map.size
             natural_pixels = np.sum(np.isin(self.segmentation_map, natural_classes))
@@ -1181,11 +1181,11 @@ Please structure your response using only <OBSERVATION> and <CONCLUSION>:
             total_pixels = self.segmentation_map.size
             
             # Permeable surfaces (allow water infiltration)
-            permeable_classes = [1, 3, 5, 9]  # forest, agricultural, grassland, bare_soil
+            permeable_classes = [1, 3, 5]  # forest, agricultural, grassland
             permeable_pixels = np.sum(np.isin(self.segmentation_map, permeable_classes))
             
             # Impermeable surfaces (prevent water infiltration)
-            impermeable_classes = [4, 6, 7, 8, 10]  # residential, railways, roads, commercial, buildings
+            impermeable_classes = [4, 6, 7, 8, 9, 10]  # residential, railways, roads, commercial, buildings
             impermeable_pixels = np.sum(np.isin(self.segmentation_map, impermeable_classes))
             
             # Water bodies (existing water)
@@ -1252,7 +1252,7 @@ Please structure your response using only <OBSERVATION> and <CONCLUSION>:
         # Drainage infrastructure requirements
         if self.segmentation_map is not None and self.height_map is not None:
             # Urban areas with poor drainage potential
-            urban_classes = [4, 6, 7, 8, 10]  # urban development classes
+            urban_classes = [4, 6, 7, 8, 9, 10]  # urban development classes
             urban_mask = np.isin(self.segmentation_map, urban_classes)
             
             # Urban areas in low-lying regions need better drainage

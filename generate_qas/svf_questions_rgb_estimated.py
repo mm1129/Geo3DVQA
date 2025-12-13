@@ -182,7 +182,32 @@ def assign_balanced_labels(regions, target_region):
             region['label'] = remaining_labels[i]
     
     return regions
-
+"""
+0. background
+    1. forest
+    2. water
+    3. agricultural
+    4. residential,commercial,industrial
+    5. grassland,swamp,shrubbery
+    6. railway,trainstation
+    7. highway,squares
+    8. airport,shipyard
+    9. roads
+    10. buildings
+"""
+landcover_names = {
+    0: 'background',
+    1: 'forest',
+    2: 'water',
+    3: 'agricultural',
+    4: 'residential_commercial_industrial',
+    5: 'grassland_swamp_shrubbery',
+    6: 'railway_trainstation',
+    7: 'highway_squares',
+    8: 'airport_shipyard',
+    9: 'roads',
+    10: 'buildings'
+}
 class ConstructSVFQuestionRGB(SVFHardQuestionMixin):
     def __init__(self, estimated_svf_map, estimated_height_map=None, estimated_segmentation_map=None, rgb_image=None, file_path=None, cnt=0, debug=False, use_gpt_rephrase=False, openai_api_key=None, hard_ratio=0.0, mode="train", coordinate_answers=False, balanced_categories=False):
         self.svf_map = estimated_svf_map
@@ -1328,13 +1353,12 @@ class ConstructSVFQuestionRGB(SVFHardQuestionMixin):
         BUILDING_CLASS_ID = 10
         # GeoNRW landcover classes (see landcover_names):
         # 0: others, 1: forest, 2: water, 3: agricultural, 4: residential,
-        # 5: grassland, 6: railways, 7: roads, 8: commercial,
-        # 9: bare_soil, 10: buildings
+        # 5: grassland, 6: railways, 7: highways, 8: airports, 9: roads, 10: buildings
         URBAN_AREA_CLASSES = [4, 6, 7, 8]  # residential, railways, roads, commercial
         
         # Natural vs. artificial masks aligned with landcover_names
-        natural_classes = [1, 2, 3, 5, 9]  # forest, water, agricultural, grassland, bare_soil
-        artificial_classes = [4, 6, 7, 8, 10]   # residential, railways, roads, commercial, buildings
+        natural_classes = [1, 2, 3, 5]  # forest, water, agricultural, grassland
+        artificial_classes = [4, 6, 7, 8, 9,10]   # residential, railways, highways, airports,roads, buildings
         
         # Check overall building/urban coverage
         building_pixels = np.sum(self.segmentation_map == BUILDING_CLASS_ID)
@@ -1417,8 +1441,8 @@ class ConstructSVFQuestionRGB(SVFHardQuestionMixin):
                 urban_pixels = np.sum(np.isin(region_seg_map, URBAN_AREA_CLASSES))
                 
                 # Natural vs. artificial masks aligned with landcover_names
-                natural_classes = [1, 2, 3, 5, 9]  # forest, water, agricultural, grassland, bare_soil
-                artificial_classes = [4, 6, 7, 8, 10]   # residential, railways, roads, commercial, buildings
+                natural_classes = [1, 2, 3, 5]  # forest, water, agricultural, grassland
+                artificial_classes = [4, 6, 7, 8, 9, 10]   # residential, railways, roads, commercial, buildings
                 
                 natural_pixels = np.sum(np.isin(region_seg_map, natural_classes))
                 artificial_pixels = np.sum(np.isin(region_seg_map, artificial_classes))
@@ -2811,11 +2835,11 @@ class ConstructSVFQuestionRGB(SVFHardQuestionMixin):
             
         
         unique_classes = np.unique(self.segmentation_map)
-        landcover_names = {
-            0: 'others', 1: 'forest', 2: 'water', 3: 'agricultural', 
-            4: 'residential', 5: 'grassland', 6: 'railways', 
-            7: 'roads', 8: 'commercial', 9: 'bare_soil', 10: 'buildings'
-        }
+        # landcover_names = {
+        #     0: 'others', 1: 'forest', 2: 'water', 3: 'agricultural', 
+        #     4: 'residential', 5: 'grassland', 6: 'railways', 
+        #     7: 'highways', 8: 'airports', 9: 'roads', 10: 'buildings'
+        # }
         
         present_types = [landcover_names.get(cls, f'class_{cls}') for cls in unique_classes if cls in landcover_names]
         
@@ -2849,11 +2873,11 @@ class ConstructSVFQuestionRGB(SVFHardQuestionMixin):
         unique_classes, counts = np.unique(self.segmentation_map, return_counts=True)
         total_pixels = self.segmentation_map.size
         
-        landcover_names = {
-            0: 'others', 1: 'forest', 2: 'water', 3: 'agricultural', 
-            4: 'residential', 5: 'grassland', 6: 'railways', 
-            7: 'roads', 8: 'commercial', 9: 'bare_soil', 10: 'buildings'
-        }
+        # landcover_names = {
+        #     0: 'others', 1: 'forest', 2: 'water', 3: 'agricultural', 
+        #     4: 'residential', 5: 'grassland', 6: 'railways', 
+        #     7: 'highways', 8: 'airports', 9: 'roads', 10: 'buildings'
+        # }
         
         
         sorted_indices = np.argsort(counts)[::-1]  

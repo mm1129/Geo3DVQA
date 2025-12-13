@@ -303,7 +303,6 @@ Please evaluate the model's landscape description response against the ground tr
   * FOREST: woodland, trees, forestland, wooded, tree_cover, timber, canopy
   * WATER: aquatic, river, lake, water_body, wetland, hydrographic, streams, ponds
   * GRASSLAND: pasture, meadow, grassland, grazing, grass, prairie, savanna
-  * BARE_SOIL: bare_ground, soil, exposed_soil, barren, unvegetated, exposed_earth
   * ROADS/TRANSPORT: transportation, infrastructure, pathways, transport, streets, highways
 
 **SCORING FRAMEWORK - USE THIS EXACT SCALE:**
