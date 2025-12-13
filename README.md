@@ -20,7 +20,7 @@ Three-dimensional geospatial analysis is critical to applications in urban plann
 - 2025/11/11, our paper was accepted to WACV 2026!
 
 ## ToDo
-- [ ] update code & data (merge `develop' branch)
+- [ ] update code & data 
 
 ## Data preparation
 
@@ -59,7 +59,7 @@ python inference/svf_qa_multi.py \
 ```
 
 ## Project Structure
-(some "as-is" code are in `develop' branch)
+(some will be added later)
 ```
 Geo3DVQA/
 ├── core_release/          # Minimal wrappers and paper-aligned quickstart
