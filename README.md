@@ -100,11 +100,18 @@ However, the implementation reflects the same core methodology and is intended a
 
 ## Citation
 ```text
-% Add citation here (BibTeX/Reference)
+@article{tsujimoto2025geo3dvqa,
+  title={Geo3DVQA: Evaluating Vision-Language Models for 3D Geospatial Reasoning from Aerial Imagery},
+  author={Tsujimoto, Mai and Wang, Junjue and Xuan, Weihao and Yokoya, Naoto},
+  journal={arXiv preprint arXiv:2512.07276},
+  year={2025}
+}
 ```
 
 ## Acknowledgments
 This project builds upon public geospatial datasets and community tools in remote sensing and multimodal learning. We thank the maintainers and contributors of the referenced projects.
+
+There would be a small update on arxiv for ver2 re-evaluation.
 
 We used GeoNRW dataset for RGB, DSM (digital surface model), segmentation.
 GeoNRW is available on ![SynRS3D](https://github.com/JTRNEO/SynRS3D).
