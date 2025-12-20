@@ -99,7 +99,7 @@ Output (JSONL):
 **Important**: This repository contains a refactored reference implementation of the method described in our paper. For readability and maintainability, the code has been reorganized and some parts might be modified or added for additional experiments after the paper was written.
 However, the implementation reflects the same core methodology and is intended as a basis for reproducing and extending our work.
 
-There would be a small update on arxiv for ver2 re-calculation.
+There would be a small update on arxiv as ver2.
 
 ## Citation
 ```text
