@@ -1,0 +1,63 @@
+# Geo3DVQA Configuration File Example
+# Copy this file to config.yaml and modify as needed
+
+# Paths (use absolute paths for reproducibility)
+paths:
+  svf_train: "/path/to/svf/train"
+  svf_test: "/path/to/svf/test"
+  geonrw: "/path/to/geonrw"
+  output_dir: "./outputs"
+
+# Random seed for reproducibility
+random_seed: 42
+
+# Processing settings
+processing:
+  mode: "both"  # "train", "test", or "both"
+  num_processes: 0  # 0 = auto-detect
+  batch_size: 8
+  max_files: 3000  # 0 = all files
+  qa_multiplier: 15
+  hard_ratio: 0.3
+
+# Question generation settings
+question_generation:
+  question_types: "all"  # comma-separated or "all"
+  balanced_categories: false
+  use_gpt_rephrase: true
+  skip_plots: true
+  skip_detail_files: false
+
+# Inference settings
+inference:
+  model: "gpt-4o"
+  temperature: 0.0
+  max_new_tokens: 512
+  batch_size: 4
+  modalities: ["rgb", "dsm", "svf", "seg"]
+  dsm_colormap: "terrain"
+  svf_colormap: "plasma"
+
+# Evaluation settings
+evaluation:
+  eval_model: "gpt-4.1-mini"
+  category_specific_rules:
+    landcover_type:
+      jaccard_threshold: 0.7
+    height_average:
+      relative_tolerance: 0.3
+      absolute_tolerance: 10
+    hard_pixel:
+      tolerance: 0.05
+
+# API settings (use environment variables for security)
+# DO NOT put actual API keys in this file
+api:
+  openai_key_env: "OPENAI_API_KEY"  # Environment variable name
+
+# Logging settings
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/geo3dvqa.log"
+  console: true
+
